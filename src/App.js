@@ -12,6 +12,12 @@ function App() {
     let result = (floorLength * floorBreadth) / (tileLength * tileBreadth);
     setTilesCount(result);
   };
+  let reset = () => {
+    setTileLength(0);
+    setTileBreadth(0);
+    setFloorLength(0);
+    setFloorBreadth(0);
+  };
   return (
     <div className="container-md">
       <Tabs defaultActiveKey="tiles" id="tiles" className="mb-3">
@@ -21,12 +27,14 @@ function App() {
               <InputGroup>
                 <InputGroup.Text>Tile Dimensions</InputGroup.Text>
                 <Form.Control
+                  value={tileLength}
                   type="number"
                   min={1}
                   placeholder="Enter length"
                   onChange={(e) => setTileLength(e.target.value)}
                 />
                 <Form.Control
+                  value={tileBreadth}
                   type="number"
                   placeholder="Enter breadth"
                   onChange={(e) => setTileBreadth(e.target.value)}
@@ -38,12 +46,14 @@ function App() {
               <InputGroup>
                 <InputGroup.Text>Floor Dimensions</InputGroup.Text>
                 <Form.Control
+                  value={floorLength}
                   type="number"
                   placeholder="Enter length"
                   onChange={(e) => setFloorLength(e.target.value)}
                 />
                 <Form.Control
                   type="number"
+                  value={floorBreadth}
                   placeholder="Enter breadth"
                   onChange={(e) => setFloorBreadth(e.target.value)}
                 />
@@ -57,6 +67,14 @@ function App() {
               className="mb-3"
             >
               Calculate
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              className="mb-3 ms-3"
+              onClick={() => reset()}
+            >
+              Reset
             </Button>
           </Form>
           <Alert># of tiles = {Math.ceil(tilesCount)}</Alert>
